@@ -12,11 +12,10 @@ def timer(wake_up):
         now = datetime.now()
         current_time = str(now.strftime("%H : %M : %S"))
         current_time = current_time[:7]
-        print(current_time)
     return current_time
 
 def main():
-    wake_up=input("What time would you like to wake up? (hh : mm)")
+    wake_up=input("What time would you like to wake up? (hh : mm)") #Military Time
     print(timer(wake_up))
     
 main()
