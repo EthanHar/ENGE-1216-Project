@@ -1,0 +1,51 @@
+<html>
+    <head>
+    </head>
+    <body>
+        <label for="wake-up">What time would you like to wake up?</label>
+        <input id="wake-up" type="time" onchange="wake_up(this.value)" />
+        <br>
+        <b><p>The time is: <u><label id='today'></label></u></p></b>
+        <br>
+        <script>
+            // set time will be set to the time to wake up at
+            var set_time
+
+            //this function gets the time every second and compares it to set time
+            function updateTime(time) {
+                var now = new Date()
+                var hours = now.getHours().toString().padStart(2, '0')
+                var minutes = now.getMinutes().toString().padStart(2, '0')
+                var seconds = now.getSeconds().toString().padStart(2, '0')
+                var timeString = `${hours} : ${minutes} : ${seconds}`
+
+                if(set_time != null)
+                {
+                    document.getElementById("today").innerText = timeString
+                }
+
+                if(set_time == hours+":"+minutes)
+                {
+                    //clearInterval(interval)
+                    set_time = null
+                    document.getElementById("today").innerText = ""
+                    document.getElementById("wake-up").value = null
+                    alarm()
+                }
+            }
+            var interval = setInterval(updateTime, 1000)
+
+            // sets set time
+            function wake_up(time)
+            {
+                set_time = time
+            }
+
+            //function that is calles when time is reached
+            function alarm()
+            {
+                alert("wake up!")
+            }
+        </script>
+    </body>
+</html>
